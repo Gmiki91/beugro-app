@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beugró</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<form autocomplete='off' class='form' id="login_form">
+    <div class='control block-cube block-input'>
+        <input name='username' placeholder='Username' type='text' id="name_input">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+    </div>
+    <div class='control block-cube block-input'>
+        <input name='password' placeholder='Password' type='password' id="password_input">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+    </div>
+    <button class='btn block-cube block-cube-hover' type='button' id="login_button" onclick="login()">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Log In
+        </div>
+    </button>
+    <button class='btn block-cube block-cube-hover' type='button' id="register_button" onclick="register()">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Register
+        </div>
+    </button>
+</form>
+<form id="logged_in">
+
+</form>
+
+<script src="js/index.js"></script>
+</body>
+</html>
