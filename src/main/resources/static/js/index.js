@@ -60,10 +60,11 @@ function login(){
 function loggedIn(name){
     document.getElementById("login_form").style.display="none";
     document.getElementById("logged_in").style.display="block";
+    document.getElementById("product_list_form").style.display="block";
     var loggedInForm = document.getElementById("logged_in");
     var logOutButton = document.createElement("button");
     newProduct();
-    listProducts();
+    fetchProducts();
     logOutButton.innerHTML="Log out" ;
     loggedInForm.innerHTML =`<div align="center" margin-top="300px"><p float="left">Hello ${name} !</p>
     <br> <button class="button_cont" float="left" type="button" onclick="logout()">Log out </button></div>`
@@ -74,4 +75,6 @@ function loggedIn(name){
 function logout(){
      document.getElementById("login_form").style.display="block";
      document.getElementById("logged_in").style.display="none";
+         document.getElementById("product_list_form").style.display="none";
+
 }

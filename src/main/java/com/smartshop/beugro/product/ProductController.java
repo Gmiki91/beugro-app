@@ -18,9 +18,10 @@ public class ProductController {
 
     @PostMapping("/saveProduct")
     public ResponseMessage saveProduct(@RequestBody Product product){
-        if(product.getName().length()<3){
+        if(product.getName().trim().length()<3){
             return new ResponseMessage("The product name has to be at least 3 characters long");
         }else{
+            product.setUp();
             productDao.saveProduct(product);
             return new ResponseMessage(product.getName() + " has been saved");
         }

@@ -15,14 +15,18 @@ public class ProductDao {
 
     public void saveProduct(Product product){
         jdbcTemplate.update("Insert into products (name,SKU,qty,status,created_at) values(?,?,?,?,?)"
-                ,product.getName(),product.getSku(),product.getQty(),product.getStatus(),product.getTimestamp());
+                ,product.getName(),
+                product.getSku(),
+                product.getQty(),
+                product.getStatus(),
+                product.getTimestamp());
     }
     public List<Product> listProducts(){
         return jdbcTemplate.query("Select name,SKU,qty,status,created_at from products",
                 (resultSet, i) -> new Product(
                         resultSet.getString("name"),
-                        resultSet.getInt("qty"),
                         resultSet.getString("SKU"),
+                        resultSet.getInt("qty"),
                         resultSet.getInt("status"),
                         resultSet.getTimestamp("created_at")
                         ));
