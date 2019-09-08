@@ -1,4 +1,4 @@
-package com.smartshop.beugro;
+package com.smartshop.beugro.user;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -7,10 +7,10 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
-public class Dao {
+public class UserDao {
     private JdbcTemplate jdbcTemplate;
 
-    public Dao(DataSource dataSource){
+    public UserDao(DataSource dataSource){
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

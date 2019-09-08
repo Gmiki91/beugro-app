@@ -1,4 +1,4 @@
-package com.smartshop.beugro;
+package com.smartshop.beugro.user;
 
 public class User {
     private String name;
