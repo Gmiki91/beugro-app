@@ -35,10 +35,11 @@ public class ProductDao {
                 ));
     }
     public void updateProduct(Product product){
-        jdbcTemplate.update("Update products Set name=?,SKU=?,qty=? Where id=?"
+        jdbcTemplate.update("Update products Set name=?,SKU=?,qty=?, status=? Where id=?"
                 , product.getName(),
                 product.getSku(),
                 product.getQty(),
+                product.getStatus(),
                 product.getId());
     }
 }

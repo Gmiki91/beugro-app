@@ -61,6 +61,9 @@ function loggedIn(name){
     document.getElementById("login_form").style.display="none";
     document.getElementById("logged_in").style.display="block";
     document.getElementById("product_list_form").style.display="block";
+    document.getElementById("product_registration_form").style.display="block";
+    document.getElementById("logout").style.display="block";
+
     var loggedInForm = document.getElementById("logged_in");
     var logoutForm = document.getElementById("logout");
     var logOutButton = document.createElement("button");
@@ -77,5 +80,8 @@ function logout(){
      document.getElementById("login_form").style.display="block";
      document.getElementById("logged_in").style.display="none";
      document.getElementById("product_list_form").style.display="none";
+     document.getElementById("product_registration_form").style.display="none";
+     document.getElementById("logout").style.display="none";
+
 
 }

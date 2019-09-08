@@ -1,8 +1,8 @@
 function newProduct() {
   var productRegister = document.getElementById("product_registration_form");
-  var table = document.createElement("table");
+  var table = document.getElementById("product_register");
   table.setAttribute("class", "darkTable");
-
+  table.innerHTML="";
   var row = document.createElement("tr");
   var nameTd = document.createElement("td");
   nameTd.innerHTML = `<input id="product_name_input" placeholder="Termék neve">`;
@@ -15,7 +15,6 @@ function newProduct() {
   row.appendChild(qtyTd);
   row.appendChild(buttonTd);
   table.appendChild(row);
-  productRegister.appendChild(table);
 }
 
 function saveProduct() {
@@ -153,8 +152,8 @@ function updateProduct(data){
   var request ={
     "id":id,
     "name":name,
-    "sku":sku,
-    "qty":qty
+    "qty":qty,
+    "sku":sku
   };
   fetch("updateProduct", {
         method: "PUT",

@@ -30,6 +30,7 @@ public class ProductController {
     }
     @PutMapping("/updateProduct")
     public ResponseMessage updateProduct(@RequestBody Product product){
+        product.checkStatus();
         productDao.updateProduct(product);
         return new ResponseMessage("ok");
     }
