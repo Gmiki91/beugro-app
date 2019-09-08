@@ -2,6 +2,7 @@ package com.smartshop.beugro.product;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import javax.sql.DataSource;
 import java.util.List;
 
@@ -9,26 +10,35 @@ import java.util.List;
 public class ProductDao {
     private JdbcTemplate jdbcTemplate;
 
-    public ProductDao(DataSource dataSource){
-        jdbcTemplate=new JdbcTemplate(dataSource);
+    public ProductDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public void saveProduct(Product product){
+    public void saveProduct(Product product) {
         jdbcTemplate.update("Insert into products (name,SKU,qty,status,created_at) values(?,?,?,?,?)"
-                ,product.getName(),
+                , product.getName(),
                 product.getSku(),
                 product.getQty(),
                 product.getStatus(),
                 product.getTimestamp());
     }
-    public List<Product> listProducts(){
-        return jdbcTemplate.query("Select name,SKU,qty,status,created_at from products",
+
+    public List<Product> listProducts() {
+        return jdbcTemplate.query("Select id,name,SKU,qty,status,created_at from products",
                 (resultSet, i) -> new Product(
+                        resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getString("SKU"),
                         resultSet.getInt("qty"),
                         resultSet.getInt("status"),
                         resultSet.getTimestamp("created_at")
-                        ));
+                ));
+    }
+    public void updateProduct(Product product){
+        jdbcTemplate.update("Update products Set name=?,SKU=?,qty=? Where id=?"
+                , product.getName(),
+                product.getSku(),
+                product.getQty(),
+                product.getId());
     }
 }

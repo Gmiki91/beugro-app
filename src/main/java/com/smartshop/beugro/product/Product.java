@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Product {
+    private long id;
     private String name;
     private int qty;
     private String sku;
@@ -22,7 +23,15 @@ public class Product {
         this.qty = qty;
     }
 
-    public Product(String name, String sku, int qty, int status, Timestamp timestamp) {
+    public Product(long id,String name, int qty, String sku) {
+        this.id=id;
+        this.name = name;
+        this.qty = qty;
+        this.sku = sku;
+    }
+
+    public Product(long id, String name, String sku, int qty, int status, Timestamp timestamp) {
+        this.id=id;
         this.name = name;
         this.qty = qty;
         this.sku=sku;
@@ -96,5 +105,13 @@ public class Product {
 
     public void setTimestampFormatted(String timestampFormatted) {
         this.timestampFormatted = timestampFormatted;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

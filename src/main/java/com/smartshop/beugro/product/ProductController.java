@@ -1,10 +1,7 @@
 package com.smartshop.beugro.product;
 
 import com.smartshop.beugro.ResponseMessage;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,10 @@ public class ProductController {
     @GetMapping("/getProducts")
     public List<Product> getProducts(){
         return productDao.listProducts();
+    }
+    @PutMapping("/updateProduct")
+    public ResponseMessage updateProduct(@RequestBody Product product){
+        productDao.updateProduct(product);
+        return new ResponseMessage("ok");
     }
 }
