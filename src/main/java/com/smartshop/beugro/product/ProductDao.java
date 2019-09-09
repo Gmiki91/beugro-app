@@ -1,9 +1,12 @@
 package com.smartshop.beugro.product;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -41,5 +44,14 @@ public class ProductDao {
                 product.getQty(),
                 product.getStatus(),
                 product.getId());
+    }
+    public Product getProductById(long id){
+       return jdbcTemplate.queryForObject("Select name,sku,qty,status from products where id=?",
+                ((resultSet, i) -> new Product(
+                        resultSet.getString("name"),
+                        resultSet.getString("SKU"),
+                        resultSet.getInt("qty"),
+                        resultSet.getInt("status")
+                        )),id);
     }
 }

@@ -94,15 +94,34 @@ function showProducts(jsonData) {
     modifyButton.setAttribute("id", "modify"+jsonData[i].id);
     modifyButton["raw-data"] = jsonData[i];
 
+    var exportButton = document.createElement("button");
+    exportButton.setAttribute("type", "button");
+    exportButton.innerHTML = "Exportálás";
+    exportButton.onclick = handleExport;
+    exportButton["raw-data"] = jsonData[i].id;
+
     tr.appendChild(nameTd);
     tr.appendChild(skuTd);
     tr.appendChild(qtyTd);
     tr.appendChild(statusTd);
     tr.appendChild(timeTd);
+    tr.appendChild(exportButton);
     tr.appendChild(modifyButton);
     table.appendChild(tr);
   }
   document.getElementById("product_list_form").appendChild(table);
+}
+
+function handleExport(){
+  var id = this["raw-data"];
+  fetch("/exportProduct?id="+id)
+    .then(function (response){
+      return response.json();
+    })
+    .then(function(jsonData){
+      alert(jsonData.message);
+    });
+return false;
 }
 
 function handleEdit() {
@@ -155,7 +174,7 @@ function updateProduct(data){
     "qty":qty,
     "sku":sku
   };
-  fetch("updateProduct", {
+  fetch("/updateProduct", {
         method: "PUT",
         body: JSON.stringify(request),
         headers: {

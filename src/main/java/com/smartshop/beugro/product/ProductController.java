@@ -3,7 +3,13 @@ package com.smartshop.beugro.product;
 import com.smartshop.beugro.ResponseMessage;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.util.List;
+
+import static javax.imageio.ImageIO.getCacheDirectory;
 
 @RestController
 public class ProductController {
@@ -33,5 +39,25 @@ public class ProductController {
         product.checkStatus();
         productDao.updateProduct(product);
         return new ResponseMessage("ok");
+    }
+    @GetMapping("/exportProduct")
+    public ResponseMessage exportProduct(@RequestParam long id){
+       Product product = productDao.getProductById(id);
+        try {
+
+            File file = new File(getCacheDirectory(),"file.csv");
+            JAXBContext jaxbContext = JAXBContext.newInstance(Product.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(product, file);
+            jaxbMarshaller.marshal(product, System.out);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return new ResponseMessage("Export sikeres");
+
     }
 }

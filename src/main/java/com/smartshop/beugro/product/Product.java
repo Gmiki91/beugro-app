@@ -1,10 +1,14 @@
 package com.smartshop.beugro.product;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.Timestamp;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
+@XmlRootElement
 public class Product {
     private long id;
     private String name;
@@ -28,6 +32,13 @@ public class Product {
         this.name = name;
         this.qty = qty;
         this.sku = sku;
+    }
+
+    public Product(String name, String sku, int qty,int status) {
+        this.name = name;
+        this.qty = qty;
+        this.sku = sku;
+        this.status = status;
     }
 
     public Product(long id, String name, String sku, int qty, int status, Timestamp timestamp) {
@@ -65,6 +76,7 @@ public class Product {
         return name;
     }
 
+    @XmlElement
     public void setName(String name) {
         this.name = name;
     }
@@ -73,6 +85,7 @@ public class Product {
         return qty;
     }
 
+    @XmlElement
     public void setQty(int qty) {
         this.qty = qty;
     }
@@ -80,7 +93,7 @@ public class Product {
     public String getSku() {
         return sku;
     }
-
+    @XmlID
     public void setSku(String sku) {
         this.sku = sku;
     }
@@ -89,6 +102,7 @@ public class Product {
         return status;
     }
 
+    @XmlElement
     public void setStatus(int status) {
         this.status = status;
     }
